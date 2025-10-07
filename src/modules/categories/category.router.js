@@ -9,7 +9,7 @@ const {
   updateCategorySchema,
   listQuerySchema,
 } = require("./category.validation");
-const ctrl = require("./category.controller");
+const controlller = require("./category.controller");
 
 // public list
 router.get("/", validate(listQuerySchema), ctrl.list);
@@ -20,15 +20,15 @@ router.post(
   verifyJWT,
   requireRole("admin"),
   validate(createCategorySchema),
-  ctrl.create
+  controlller.create
 );
 router.patch(
   "/:id",
   verifyJWT,
   requireRole("admin"),
   validate(updateCategorySchema),
-  ctrl.update
+  controlller.update
 );
-router.delete("/:id", verifyJWT, requireRole("admin"), ctrl.remove);
+router.delete("/:id", verifyJWT, requireRole("admin"), controlller.remove);
 
 module.exports = router;
